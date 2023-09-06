@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMEN DIAGNÓSTICO</title>
+    <script src="./script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+</head>
+
+<body>
+    <nav class="navbar" style="background-color: rgb(211, 226, 255);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=""> Examen Diagnóstico </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registerModal">Registrar</button>
+        
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar persona</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="userForm">
+                            <input type="hidden" id="userId">
+                            <div class="form-group">
+                                <label for="first_name">Nombre:</label>
+                                <input type="text" class="form-control" id="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Apellido:</label>
+                                <input type="text" class="form-control" id="last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico:</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="saveBtn()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Mostrar persona</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="userForm">
+                            <input type="hidden" id="userId">
+                            <div class="form-group">
+                                <label for="first_name">Nombre:</label>
+                                <input type="text" class="form-control" id="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Apellido:</label>
+                                <input type="text" class="form-control" id="last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico:</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="showBtn()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar persona</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="userForm">
+                            <input type="hidden" id="userId">
+                            <div class="form-group">
+                                <label for="first_name">Nombre:</label>
+                                <input type="text" class="form-control" id="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Apellido:</label>
+                                <input type="text" class="form-control" id="last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electrónico:</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="updateBtn()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Correo electrónico</th>
+                    <th>Avatar</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="usersTable">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
